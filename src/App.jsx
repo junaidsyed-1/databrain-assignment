@@ -2,7 +2,10 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import Body from "./components/Body";
 import Header from "./components/Header";
-import Form from "./components/Form";
+import FormContainer from "./components/FormContainer";
+import AddressForm from "./components/AddressForm";
+import PaymentDetailForm from "./components/PaymentDetailForm";
+import PersonalDetailsForm from "./components/PersonalDetailsForm";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +18,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/form",
-        element: <Form />,
+        element: <FormContainer />,
+      },
+      {
+        path: "/personal",
+        element: <PersonalDetailsForm />,
+      },
+      {
+        path: "/address",
+        element: <AddressForm />,
+      },
+      {
+        path: "/payment",
+        element: <PaymentDetailForm />,
       },
     ],
   },
