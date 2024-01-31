@@ -1,5 +1,11 @@
+import CardContainer from "./CardContainer";
+
 const Body = () => {
-  return <div>Body</div>;
+  return (
+    <div>
+      <CardContainer />
+    </div>
+  );
 };
 
 export default Body;
