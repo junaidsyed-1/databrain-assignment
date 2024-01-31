@@ -1,29 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Card from "./Card";
-import { USER_API } from "../utils/constant";
+import useCard from "../utils/useCard";
 
 const CardContainer = () => {
-  const [userInfo, setUserInfo] = useState(null);
-  const [filterInfo, setFilterInfo] = useState(null);
   const [searchText, setSearchText] = useState("");
 
-  useEffect(() => {
-    getInfo();
-  }, []);
-
-  const getInfo = async () => {
-    const data = await fetch(USER_API);
-    const json = await data.json();
-    setUserInfo(json);
-    setFilterInfo(json);
-  };
-
-  function handleFilter() {
-    const filteredUser = userInfo.filter((user) =>
-      user.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setFilterInfo(filteredUser);
-  }
+  const { userInfo, filterInfo, setFilterInfo } = useCard();
 
   if (!userInfo) return;
 
@@ -41,7 +23,12 @@ const CardContainer = () => {
           placeholder="Search User Name"
         />
         <button
-          onClick={handleFilter}
+          onClick={() => {
+            const filteredUser = userInfo.filter((user) =>
+              user.name.toLowerCase().includes(searchText.toLowerCase())
+            );
+            setFilterInfo(filteredUser);
+          }}
           className="px-4 py-1 border border-black rounded-full rounded-tl-none rounded-bl-none border-l-none bg-[#222222] text-white"
         >
           Search
